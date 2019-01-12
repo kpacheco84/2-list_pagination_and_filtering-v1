@@ -56,18 +56,9 @@ const removeStudentsFromPage = () => {
  
  }
  removeStudentsFromPage();
+
+
 */
-const studentsHide = (list)=>{
-for (i=0;i <=list;i+=1 ){
-  document.getElementsByTagName("li")[i].style.display = "none";
-  //studentList.removeChild(studentList[i]);
-    }
-}
-studentsHide(list);
-
-
-
-
 const showPage = ( list, page ) => {
    
    

@@ -35,70 +35,49 @@ FSJS project 2 - List Filter and Pagination
        "invoke" the function 
 ***/
 const list = document.querySelectorAll('.student-details').length;
-// correctly displays student const studentDetailUL =document.getElementsByTagName("li")[2].innerHTML;
 
-//document.getElementsByTagName("li").style.display = "none";
 const studentList = document.querySelector('ul');
-//studentList.style.visibility = "hidden";
-console.log(studentList);
-let studentsFrom= 0;
-let studentsTo= 9;
 
-//IDEA TO REMOVE STUDENTS
-/*
-const removeStudentsFromPage = () => {
-
-   while (studentList.firstElementChild) {
- 
-     studentList.removeChild(studentList.firstElementChild);
- 
-   }
- 
- }
- removeStudentsFromPage();
+let page = 1;
 
 
-*/
 const showPage = ( list, page ) => {
    
-   
-  for (i=studentsFrom;i <=studentsTo;i+=1 ){
-   
 
-    studentsFrom = studentsTo + 1;
-    studentsTo =(page * 10)-1;
-    const studentDetailUL =document.getElementsByTagName("li")[i].innerHTML;
-    const li = document.createElement('li');
+
+let studentsTo= (page * 10); //30
+let studentsFrom = studentsTo - 10;//20
+
+// if studentTo = 10 then show all 10
+if (studentsTo <= 10){
+  for (let i = 10; i < list; i++) {
+
+    document.getElementsByTagName("li")[i].style.display = "none";
+    
+            }
+          }
+          //if studentsTo >10 hide all between 0 and stdents from and everyone after students to
+            else  {
+              if(studentsTo > 10){
+                     for (let i = 0; i < studentsFrom; i++) {
+            
+                document.getElementsByTagName("li")[i].style.display = "none";
+                
+                        }
+                        for (let i = studentsTo; i < list; i++) {
+            
+                          document.getElementsByTagName("li")[i].style.display = "none";
+                         
+                                  }
+
+            }
+      }
+    }
   
-  
- 
-  console.log(studentList); 
-  
-  li.innerHTML = studentDetailUL;
-   
-  studentList.appendChild(li);
-   // looping detail perfect 
-   console.log(studentDetailUL); 
-  }
+
+ showPage(list,page);    
        
-}  
-showPage(list,1);    
-       /*
-   Loop over items in the list parameter
-   -- If the index of a list item is >= the index of the first
-   item that should be shown on the page
-   -- && the list item index is <= the index of the last item
-   that should be shown on the page, show it
 
-  }
-
-  
-     */
-   
-/*** 
-   Create the `appendPageLinks function` to generate, append, and add 
-   functionality to the pagination buttons.
-***/
 
 const appendPageLinks = ( list ) => {
   
@@ -109,15 +88,15 @@ const appendPageLinks = ( list ) => {
      
       const ul = document.createElement('ul');
      
-      const paginationDiv = document.createElement('paginationdiv');
+      const div = document.createElement('div');
      
-      paginationDiv.className = 'pagination';
+     div.className = 'pagination';
      
       const pageDiv = document.querySelector('.page');
      
-      pageDiv.appendChild(paginationDiv);
+      pageDiv.appendChild(div);
       let pages = 0;
-      paginationDiv.appendChild(ul);
+      div.appendChild(ul);
       //loop for each page number
      for (i=1;i<=pageNum;i +=1){
         pages += 1;
@@ -125,10 +104,41 @@ const appendPageLinks = ( list ) => {
         const li = document.createElement('li');
      
         ul.appendChild(li);
-        li.textContent = pages;
+       // li.textContent = pages;
+
+       
+        const a = document.createElement("a");
+        a.textContent = pages;
+        li.appendChild(a);
+       
+        
+        a.addEventListener("click", myFunction);
+      
+        function myFunction() {
+         let activepage = (a.textContent);
+         showPage(list,activepage);
+         console.log(activepage)  ;
+        
+        } 
+   
+        showPage(list,page); 
+
+          
+      
+                
+      
+              
+            
+          
+      
 
         // console.log(pages);
      }
+
+        // add event listener
+      
+
+
      
   /* (DONE)1. Determine how many pages are needed for the list by dividing the
    total number of list items by the max number of items per page 

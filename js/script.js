@@ -122,10 +122,14 @@ const appendPageLinks = ( list ) => {
        
       
         page = (a.textContent);
-        event.target.className = 'active';
+        page = parseInt(page);
+        
+        
         showPage(list,page);
-         removeClass(a);
-          
+         
+        removeClass(pageNum);
+        
+         
         } 
         
 
@@ -145,14 +149,14 @@ const appendPageLinks = ( list ) => {
    */
    }
    //Loop over pagination links to remove active class from all links
-const removeClass =(a)=> {
+const removeClass =(pageNum)=> {
 
-for (var i = 0; i < 6; i++) {
+for (var i = 1; i < pageNum; i++) {
   
     var current = document.getElementsByTagName('a');
     current[i].className = current[0].className.replace(" active", "");
     event.target.className = 'active';
-    console.log(current);
+    
   };
 
 }

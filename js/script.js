@@ -75,7 +75,7 @@ if (studentsTo <= 10){
     }
   
 
- showPage(list,page);    
+ 
        
 
 
@@ -104,42 +104,34 @@ const appendPageLinks = ( list ) => {
         const li = document.createElement('li');
      
         ul.appendChild(li);
-       // li.textContent = pages;
-
+       
+    
        
         const a = document.createElement("a");
         a.textContent = pages;
         li.appendChild(a);
+
+        
        
-        
-        a.addEventListener("click", myFunction);
-      
-        function myFunction() {
-         let activepage = (a.textContent);
-         showPage(list,activepage);
-         console.log(activepage)  ;
-        
-        } 
-   
-        showPage(list,page); 
-
-          
-      
-                
-      
-              
-            
-          
-      
-
-        // console.log(pages);
-     }
-
         // add event listener
+        a.addEventListener("click", myFunction);
+       
+       
+        function myFunction(page) {
+         
+       
       
+        page = (a.textContent);
+        event.target.className = 'active';
+        showPage(list,page);
+         removeClass(a);
+          
+        } 
+        
+
+}
 
 
-     
   /* (DONE)1. Determine how many pages are needed for the list by dividing the
    total number of list items by the max number of items per page 
    2. (DONE)Create a div , give it the “pagination” class, and append it to the .page div
@@ -152,8 +144,25 @@ const appendPageLinks = ( list ) => {
    clicked link using event.target
    */
    }
- 
+   //Loop over pagination links to remove active class from all links
+const removeClass =(a)=> {
+
+for (var i = 0; i < 6; i++) {
+  
+    var current = document.getElementsByTagName('a');
+    current[i].className = current[0].className.replace(" active", "");
+    event.target.className = 'active';
+    console.log(current);
+  };
+
+}
+
+// i know i need this but dont know where to put it
+/*let initialPage = document.getElementsByTagName('a')[page]
+        initialPage.className = 'active';
+*/
    appendPageLinks (list);
  
+   showPage(list,page); 
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.

@@ -161,9 +161,9 @@ for (var i = 1; i < pageNum; i++) {
     
     
   };
-  event.target.className = 'active';
-  showPage(list,page); 
   
+  showPage(list,page); 
+  event.target.className = 'active';
 }
 
 

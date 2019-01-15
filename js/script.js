@@ -88,7 +88,7 @@ const appendPageLinks = ( list ) => {
      
       const pageNum = (Math.ceil(list / 10));
      
-      
+    
      
       const ul = document.createElement('ul');
      
@@ -117,16 +117,21 @@ const appendPageLinks = ( list ) => {
         a.textContent = pages;
         li.appendChild(a);
 
-        
+        a.href = '#';
        
         // add event listener
         
-        a.addEventListener('click', (pagenum) => { 
+        a.addEventListener('click', pageNum => { 
           page= (a.textContent);
-           removeClass(pagenum,page);
-           
+           removeClass(pageNum);
+           console.log(pageNum);
           
-        });
+        }
+        
+        
+        
+        
+        )
 
         /*a.addEventListener("click", myFunction);
        
@@ -144,26 +149,27 @@ const appendPageLinks = ( list ) => {
 
    
    //Loop over pagination links to remove active class from all links
-const removeClass =(pageNum,page)=> {
+function removeClass (pageNum) {
 
 for (var i = 1; i < pageNum; i++) {
   
     var current = document.getElementsByTagName('a');
     current[i].className = current[0].className.replace(" active", "");
-    pageNum.className = 'active';
+    
+    
+    
     
   };
+  event.target.className = 'active';
   showPage(list,page); 
-  console.log(list,page);
+  
 }
 
-// i know i need this but dont know where to put it
-/*let initialPage = document.getElementsByTagName('a')[page]
-        initialPage.className = 'active';
-*/
+
+
    
  
-   showPage(list,3); 
+   showPage(list,page); 
    appendPageLinks (list.length);
 
 

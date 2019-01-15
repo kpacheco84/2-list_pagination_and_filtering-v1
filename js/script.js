@@ -48,7 +48,7 @@ const showPage = ( list, page ) => {
 let studentsTo= (page * 10) ; //60
 let studentsFrom = studentsTo - 10;//50
 list = list.length;
-appendPageLinks (list);
+
 // hide all students first
 for (let i = 0; i < list; i++) {
 
@@ -58,7 +58,7 @@ for (let i = 0; i < list; i++) {
   //if (studentsTo = 10){
   
    
-    for (let i = studentsFrom; i < studentsTo; i++) {
+    for (let i = studentsFrom ; i < studentsTo ; i++) {
   
       document.getElementsByTagName("li")[i].style.display = "block";
       
@@ -82,7 +82,7 @@ for (let i = 0; i < list; i++) {
  
        
 
-
+    
 const appendPageLinks = ( list ) => {
   
      
@@ -120,11 +120,11 @@ const appendPageLinks = ( list ) => {
         
        
         // add event listener
-
-        a.addEventListener('click', () => { 
-          page = (a.textContent);
-           removeClass(pageNum);
-           showPage(list, page);
+        
+        a.addEventListener('click', (pagenum) => { 
+          page= (a.textContent);
+           removeClass(pagenum,page);
+           
           
         });
 
@@ -144,16 +144,17 @@ const appendPageLinks = ( list ) => {
 
    
    //Loop over pagination links to remove active class from all links
-const removeClass =(pageNum)=> {
+const removeClass =(pageNum,page)=> {
 
 for (var i = 1; i < pageNum; i++) {
   
     var current = document.getElementsByTagName('a');
     current[i].className = current[0].className.replace(" active", "");
-    event.target.className = 'active';
+    pageNum.className = 'active';
     
   };
- 
+  showPage(list,page); 
+  console.log(list,page);
 }
 
 // i know i need this but dont know where to put it
@@ -162,7 +163,8 @@ for (var i = 1; i < pageNum; i++) {
 */
    
  
-   showPage(list,6); 
+   showPage(list,3); 
+   appendPageLinks (list.length);
 
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.

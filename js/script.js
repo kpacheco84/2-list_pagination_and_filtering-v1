@@ -118,7 +118,7 @@ const appendPageLinks = ( list ) => {
         li.appendChild(a);
 
         a.href = '#';
-       
+        document.querySelector('a').className = 'active';
         // add event listener
         
         a.addEventListener('click', pageNum => { 
@@ -158,12 +158,15 @@ for (var i = 1; i < pageNum; i++) {
     current[i].className = current[0].className.replace(" active", "");
     
     
-    
+   
+      
+  
     
   };
-  
-  showPage(list,page); 
   event.target.className = 'active';
+ 
+  showPage(list,page); 
+  
 }
 
 
@@ -172,7 +175,8 @@ for (var i = 1; i < pageNum; i++) {
  
    showPage(list,page); 
    appendPageLinks (list.length);
-  
+   
+  console.log(document.querySelector('a').className = 'active');
 
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.

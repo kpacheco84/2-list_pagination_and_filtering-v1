@@ -34,7 +34,7 @@ FSJS project 2 - List Filter and Pagination
        that will be passed into the parens later when you call or 
        "invoke" the function 
 ***/
-const list = document.querySelectorAll('.student-details').length;
+const list = document.querySelectorAll('.student-details');
 
 const studentList = document.querySelector('ul');
 
@@ -45,33 +45,44 @@ const showPage = ( list, page ) => {
    
 
 
-let studentsTo= (page * 10); //30
-let studentsFrom = studentsTo - 10;//20
-
+let studentsTo= (page * 10) ; //60
+let studentsFrom = studentsTo - 10;//50
+list = list.length;
+appendPageLinks (list);
 // if studentTo = 10 then show all 10
-if (studentsTo <= 10){
-  for (let i = 10; i < list; i++) {
+for (let i = 0; i < list; i++) {
 
-    document.getElementsByTagName("li")[i].style.display = "none";
-    
+  document.getElementsByTagName("li")[i].style.display = "none";
+  if (studentsTo = 10){
+  
+   
+    for (let i = studentsFrom; i < studentsTo; i++) {
+  
+      document.getElementsByTagName("li")[i].style.display = "block";
+      
+              }
             }
+            //if studentsTo >10 
+              else  {
+                if(studentsTo > 10){
+                       for (let i = studentsTo - 1; i < studentsFrom - 1; i++) {
+              
+                  document.getElementsByTagName("li")[i].style.display = "block";
+                  console.log(i);
+                          }
           }
-          //if studentsTo >10 hide all between 0 and stdents from and everyone after students to
-            else  {
-              if(studentsTo > 10){
-                     for (let i = 0; i < studentsFrom; i++) {
-            
-                document.getElementsByTagName("li")[i].style.display = "none";
-                
-                        }
-                        for (let i = studentsTo; i < list; i++) {
+
+
+                        /*for (let i = studentsTo; i < list; i++) {
             
                           document.getElementsByTagName("li")[i].style.display = "none";
                          
-                                  }
+                                  }*/
 
             }
+            
       }
+      
     }
   
 
@@ -97,6 +108,7 @@ const appendPageLinks = ( list ) => {
       pageDiv.appendChild(div);
       let pages = 0;
       div.appendChild(ul);
+    
       //loop for each page number
      for (i=1;i<=pageNum;i +=1){
         pages += 1;
@@ -108,46 +120,36 @@ const appendPageLinks = ( list ) => {
     
        
         const a = document.createElement("a");
+        
         a.textContent = pages;
         li.appendChild(a);
 
         
        
         // add event listener
-        a.addEventListener("click", myFunction);
+
+        a.addEventListener('click', () => { 
+          page = (a.textContent);
+           removeClass(pageNum);
+           showPage(list, page);
+          
+        });
+
+        /*a.addEventListener("click", myFunction);
        
        
         function myFunction(page) {
          
-       
+       page = (a.textContent);
+       removeClass(pageNum);
+        
+         */
+                  } 
       
-        page = (a.textContent);
-        page = parseInt(page);
-        
-        
-        showPage(list,page);
-         
-        removeClass(pageNum);
-        
-         
-        } 
-        
 
-}
+          }
 
-
-  /* (DONE)1. Determine how many pages are needed for the list by dividing the
-   total number of list items by the max number of items per page 
-   2. (DONE)Create a div , give it the “pagination” class, and append it to the .page div
-   3. (DONE)Add a ul to the “pagination” div to store the pagination links
-   4. for every page, add li and a tags with the page number text
-   5. Add an event listener to each a tag. When they are clicked
-   call the showPage function to display the appropriate page
-   6. Loop over pagination links to remove active class from all links
-   7. Add the active class to the link that was just clicked. You can identify that
-   clicked link using event.target
-   */
-   }
+   
    //Loop over pagination links to remove active class from all links
 const removeClass =(pageNum)=> {
 
@@ -158,15 +160,16 @@ for (var i = 1; i < pageNum; i++) {
     event.target.className = 'active';
     
   };
-
+ 
 }
 
 // i know i need this but dont know where to put it
 /*let initialPage = document.getElementsByTagName('a')[page]
         initialPage.className = 'active';
 */
-   appendPageLinks (list);
+   
  
-   showPage(list,page); 
+   showPage(list,6); 
+
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.

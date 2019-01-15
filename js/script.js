@@ -123,8 +123,9 @@ const appendPageLinks = ( list ) => {
         
         a.addEventListener('click', pageNum => { 
           page= (a.textContent);
+          pageNum = (Math.ceil(list / 10));
            removeClass(pageNum);
-           console.log(pageNum);
+           console.log(page);
           
         }
         
@@ -171,6 +172,7 @@ for (var i = 1; i < pageNum; i++) {
  
    showPage(list,page); 
    appendPageLinks (list.length);
+  
 
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.

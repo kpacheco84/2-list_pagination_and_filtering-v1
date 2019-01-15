@@ -49,11 +49,13 @@ let studentsTo= (page * 10) ; //60
 let studentsFrom = studentsTo - 10;//50
 list = list.length;
 appendPageLinks (list);
-// if studentTo = 10 then show all 10
+// hide all students first
 for (let i = 0; i < list; i++) {
 
   document.getElementsByTagName("li")[i].style.display = "none";
-  if (studentsTo = 10){
+
+  // show students based on page number
+  //if (studentsTo = 10){
   
    
     for (let i = studentsFrom; i < studentsTo; i++) {
@@ -63,25 +65,16 @@ for (let i = 0; i < list; i++) {
               }
             }
             //if studentsTo >10 
-              else  {
+              /*else  {
                 if(studentsTo > 10){
                        for (let i = studentsTo - 1; i < studentsFrom - 1; i++) {
               
                   document.getElementsByTagName("li")[i].style.display = "block";
                   console.log(i);
                           }
-          }
-
-
-                        /*for (let i = studentsTo; i < list; i++) {
-            
-                          document.getElementsByTagName("li")[i].style.display = "none";
-                         
-                                  }*/
-
-            }
-            
-      }
+                       }
+                  }
+            }*/
       
     }
   

@@ -15,12 +15,9 @@ let page = 1;
 
 
 const showPage = ( list, page ) => {
-   
-
-
-let studentsTo= (page * 10) ; //60
-let studentsFrom = studentsTo - 10;//50
-list = list.length;
+        let studentsTo= (page * 10) ; 
+        let studentsFrom = studentsTo - 10;
+        list = list.length;
 
 // hide all students first
 for (let i = 0; i < list; i++) {
@@ -28,9 +25,7 @@ for (let i = 0; i < list; i++) {
   document.getElementsByTagName("li")[i].style.display = "none";
 
   // show students based on page number
-  //if (studentsTo = 10){
   
-   
     for (let i = studentsFrom ; i < studentsTo ; i++) {
   
       document.getElementsByTagName("li")[i].style.display = "";
@@ -41,104 +36,57 @@ for (let i = 0; i < list; i++) {
     }
   
 
- 
-       
-
-
-    
-
     const appendPageLinks = ( list ) => {
 
               const pageNum = (Math.ceil(list / 10));
    
               const ul = document.createElement('ul');
    
-            const div = document.createElement('div');
+              const div = document.createElement('div');
    
-            div.className = 'pagination';
+              div.className = 'pagination';
   
-            const pageDiv = document.querySelector('.page');
+              const pageDiv = document.querySelector('.page');
   
-            pageDiv.appendChild(div);
+              pageDiv.appendChild(div);
    
-            let pages = 0;
+             let pages = 0;
 
-            div.appendChild(ul);
+              div.appendChild(ul);
 
-   //loop for each page number
+   //loop to add the needed page numbers to the page
 
      for (i=1;i<=pageNum;i +=1){
-
-        pages += 1;
+      pages += 1;
+        
         const li = document.createElement('li');
         ul.appendChild(li);
         const a = document.createElement("a");
         a.textContent = pages;
         li.appendChild(a);
         a.href = '#';
-    /* let initialPage = document.getElementsByTagName('a')[0];
-     initialPage.className = 'active';
-     console.log(initialPage);
-     */
-        // add event listener to pass pagenumber to ShowPage
+        //set 1st page to active on load
+        let initialPage = document.querySelector('a').className = 'active';
+    
+        // add event listener to pass pagenumber to ShowPage and remove active class
         a.addEventListener('click', (e) => {
           selectedLink = e.target.textContent;
-      
-          removeClass(pageNum);
-          e.target.className = 'active';
+          let links = document.querySelector('.active').className = '';
           passlist = document.querySelectorAll('.student-details');
           page = selectedLink;
                   showPage(passlist, page);
                   console.log(passlist, page);
-         
-         
-        
-        });//Loop over pagination links to remove active class from all links
-
-        function removeClass(pageNum){
-        for (var i = 1; i < pageNum; i++) {
-          var current = document.getElementsByTagName('a');
-          current[i].className = current[0].className.replace(" active", "");
-                          }
-                        };
-        //document.getElementsByTagName('a')[0].className= 'active';
+         //set active class for currently clicked link
+                  e.target.className = 'active';
+        });
       }
-    
-
-/*
-        a.addEventListener('click', list => { 
-
-            let pageNum = (Math.ceil(list / 10));
-           let  page = a.textContent;
-          
-          function removeClass(pageNum){
-            for (var i = 1; i < pageNum; i++) {
-                var current = document.getElementsByTagName('a');
-                current[i].className = current[0].className.replace(" active", "");
-                event.target.className = 'active';
-                      }
-                    };
-          removeClass(pageNum);
-          showPage(list,page);
-          console.log(pageNum,list,page);
-           
-                  })
-                  
-                 */
-                }  
+   
+    }  
         
- 
-
-
-   
-
-  
-
-   showPage(list,page); 
-
-   appendPageLinks (list.length);
+ // Call function for Initial Load
+showPage(list,page); 
+appendPageLinks (list.length);
    
 
 
 
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
